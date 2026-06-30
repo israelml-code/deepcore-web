@@ -950,6 +950,27 @@ ul, ol {
   max-width: 300px;
 }
 
+.footer-founders {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-glass);
+}
+
+.footer-founders p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.footer-founders strong {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
 .footer-col h4 {
   font-family: var(--font-heading);
   font-size: 1rem;
