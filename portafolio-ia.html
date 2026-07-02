@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio IA — Deep Core Tech</title>
+  <meta name="description" content="Portafolio de soluciones de Inteligencia Artificial de Deep Core Tech para instituciones educativas y empresas.">
+  <meta name="author" content="Deep Core Tech">
+  <meta name="theme-color" content="#080b16">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    /* ===== PORTAFOLIO IA PAGE ===== */
+    .portfolio-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .portfolio-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .portfolio-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+
+    .portfolio-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(8, 11, 22, 0.4) 0%,
+        rgba(8, 11, 22, 0.75) 40%,
+        #080b16 100%
+      );
+    }
+
+    /* Animated grid */
+    .portfolio-grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(123, 47, 242, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(123, 47, 242, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPulse 8s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .portfolio-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 24px;
+    }
+
+    .portfolio-logo {
+      width: 120px;
+      height: auto;
+      margin: 0 auto 28px;
+      border-radius: 12px;
+      filter: drop-shadow(0 0 25px rgba(123, 47, 242, 0.4));
+      animation: logoFloat 6s ease-in-out infinite;
+    }
+
+    .portfolio-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .portfolio-subtitle {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 60px;
+      line-height: 1.6;
+    }
+
+    /* ===== CATEGORY BUTTONS ===== */
+    .category-buttons {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .category-card {
+      position: relative;
+      width: 280px;
+      padding: 48px 36px;
+      border-radius: var(--radius-xl);
+      background: var(--color-bg-glass);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .category-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-brand);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .category-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(123, 47, 242, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent-purple);
+      box-shadow: 
+        0 20px 60px rgba(123, 47, 242, 0.25),
+        0 0 40px rgba(0, 212, 255, 0.1);
+    }
+
+    .category-card:hover::before {
+      opacity: 1;
+    }
+
+    .category-card:hover::after {
+      opacity: 1;
+    }
+
+    .category-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: var(--accent-purple-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 2.5rem;
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-card:hover .category-icon {
+      background: var(--gradient-brand);
+      box-shadow: var(--shadow-glow-purple);
+      transform: scale(1.1);
+    }
+
+    .category-name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20px;
+    }
+
+    .category-arrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      position: relative;
+      z-index: 1;
+      transition: gap 0.3s ease;
+    }
+
+    .category-card:hover .category-arrow {
+      gap: 14px;
+    }
+
+    /* ===== BACK BUTTON ===== */
+    .back-link {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--accent-cyan);
+      gap: 12px;
+    }
+
+    /* ===== DECORATIVE ORBS ===== */
+    .portfolio-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .category-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .category-card {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .portfolio-logo {
+        width: 100px;
+      }
+
+      .back-link {
+        bottom: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========== PARTICLE CANVAS ========== -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/logo.jpg" alt="Deep Core Tech Logo">
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">DEEP CORE TECH</span>
+          <span class="nav-brand-tagline">Inteligencia Profunda</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#nosotros">Nosotros</a>
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#valores">Valores</a>
+        <a href="portafolio-ia.html" class="active">Portafolio IA</a>
+        <a href="index.html#contacto" class="nav-cta">Contáctanos</a>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== PORTFOLIO HERO ========== -->
+  <section class="portfolio-hero">
+    <div class="portfolio-hero-bg">
+      <img src="assets/ai-portfolio-bg.png" alt="Inteligencia Artificial">
+    </div>
+    <div class="portfolio-grid-overlay"></div>
+
+    <!-- Decorative orbs -->
+    <div class="portfolio-orb" style="width: 350px; height: 350px; background: #7b2ff2; top: 10%; left: -120px;"></div>
+    <div class="portfolio-orb" style="width: 250px; height: 250px; background: #00d4ff; bottom: 15%; right: -80px;"></div>
+
+    <div class="portfolio-content">
+      <img src="assets/logo.jpg" alt="Deep Core Tech" class="portfolio-logo">
+      <h1 class="portfolio-title">Portafolio <span class="gradient-text">IA</span></h1>
+      <p class="portfolio-subtitle">
+        Soluciones de Inteligencia Artificial diseñadas para transformar 
+        la manera en que operan nuestros clientes.
+      </p>
+
+      <div class="category-buttons">
+        <!-- Instituciones Educativas -->
+        <a href="#" class="category-card" id="btn-instituciones">
+          <div class="category-icon">🎓</div>
+          <h2 class="category-name">Instituciones Educativas</h2>
+          <p class="category-desc">Soluciones de IA para escuelas, universidades e instituciones de formación.</p>
+          <span class="category-arrow">
+            Ver proyectos
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </a>
+
+        <!-- Empresas -->
+        <a href="#" class="category-card" id="btn-empresas">
+          <div class="category-icon">🏢</div>
+          <h2 class="category-name">Empresas</h2>
+          <p class="category-desc">Automatización y optimización empresarial potenciada con inteligencia artificial.</p>
+          <span class="category-arrow">
+            Ver proyectos
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Volver al inicio
+    </a>
+  </section>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script src="script.js"></script>
+</body>
+</html>
