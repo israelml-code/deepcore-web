@@ -802,6 +802,95 @@ ul, ol {
   line-height: 1.6;
 }
 
+/* ---------- CLIENTS CAROUSEL ---------- */
+.clients-section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 0 60px;
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+.clients-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.clients-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.clients-track {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  width: max-content;
+  animation: scrollLogos 25s linear infinite;
+}
+
+.clients-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.client-logo {
+  flex-shrink: 0;
+  width: 200px;
+  height: 120px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.client-logo:hover {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 30px rgba(123, 47, 242, 0.2);
+  transform: scale(1.05);
+}
+
+.client-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(40%) brightness(0.9);
+  transition: filter 0.4s ease;
+}
+
+.client-logo:hover img {
+  filter: grayscale(0%) brightness(1);
+}
+
 /* ---------- VALUES / PHILOSOPHY DETAIL ---------- */
 .values-section {
   position: relative;
