@@ -802,93 +802,95 @@ ul, ol {
   line-height: 1.6;
 }
 
-/* ---------- CLIENTS CAROUSEL ---------- */
+/* ---------- CLIENTS / NUESTROS CLIENTES ---------- */
 .clients-section {
   position: relative;
   z-index: 1;
-  padding: 80px 0 60px;
+  padding: 100px 0;
   background: var(--color-bg-primary);
-  overflow: hidden;
 }
 
 .clients-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
 }
 
-.clients-carousel {
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.client-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-card);
+  border: 1px solid var(--border-glass);
+  transition: all var(--transition-smooth);
+}
+
+.client-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-purple);
+  box-shadow: var(--shadow-glow-purple);
+}
+
+.client-image {
   position: relative;
   width: 100%;
+  height: 180px;
   overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-}
-
-.clients-track {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  width: max-content;
-  animation: scrollLogos 25s linear infinite;
-}
-
-.clients-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scrollLogos {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.client-logo {
-  flex-shrink: 0;
-  width: 200px;
-  height: 120px;
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-glass);
-  border: 1px solid var(--border-glass);
-  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  background: var(--color-bg-glass);
+  padding: 20px;
 }
 
-.client-logo:hover {
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 30px rgba(123, 47, 242, 0.2);
-  transform: scale(1.05);
-}
-
-.client-logo img {
+.client-image img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: grayscale(40%) brightness(0.9);
-  transition: filter 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.client-logo:hover img {
-  filter: grayscale(0%) brightness(1);
+.client-card:hover .client-image img {
+  transform: scale(1.08);
+}
+
+.client-info {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border-glass);
+  text-align: center;
+}
+
+.client-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.client-info p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .clients-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    margin: 0 auto;
+  }
 }
 
 /* ---------- VALUES / PHILOSOPHY DETAIL ---------- */
