@@ -815,91 +815,35 @@ ul, ol {
   margin-bottom: 60px;
 }
 
-.clients-grid {
+.clients-image-wrapper {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 28px;
   justify-content: center;
-}
-
-.client-card {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--color-bg-card);
-  border: 1px solid var(--border-glass);
-  transition: all var(--transition-smooth);
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: 280px;
-}
-
-.client-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent-purple);
-  box-shadow: var(--shadow-glow-purple);
-}
-
-.client-image {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  background: var(--color-bg-glass);
-  padding: 20px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(12px);
+  max-width: 860px;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-.client-image img {
-  max-width: 100%;
-  max-height: 100%;
+.clients-image-wrapper img {
+  width: 100%;
+  max-width: 780px;
+  height: auto;
   object-fit: contain;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.client-card:hover .client-image img {
-  transform: scale(1.08);
-}
-
-.client-info {
-  padding: 20px 24px;
-  border-top: 1px solid var(--border-glass);
-  text-align: center;
-}
-
-.client-info h3 {
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.client-info p {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  border-radius: var(--radius-lg);
+  mix-blend-mode: lighten;
 }
 
 @media (max-width: 768px) {
-  .clients-grid {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .client-card {
-    flex: 0 0 calc(50% - 14px);
-    max-width: calc(50% - 14px);
+  .clients-image-wrapper {
+    padding: 24px;
   }
 }
 
-@media (max-width: 480px) {
-  .client-card {
-    flex: 0 0 100%;
-    max-width: 300px;
-  }
-}
 
 /* ---------- VALUES / PHILOSOPHY DETAIL ---------- */
 .values-section {
