@@ -813,29 +813,27 @@ ul, ol {
 .clients-header {
   text-align: center;
   margin-bottom: 60px;
+  width: 100%;
 }
 
 .clients-image-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-glass);
+  padding: 50px 60px;
+  background: #0d1024;
+  border: 1px solid rgba(123, 47, 242, 0.25);
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(12px);
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 60px rgba(123, 47, 242, 0.1), 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .clients-image-wrapper img {
   width: 100%;
-  max-width: 780px;
+  max-width: 800px;
   height: auto;
   object-fit: contain;
-  border-radius: var(--radius-lg);
-  mix-blend-mode: lighten;
 }
 
 @media (max-width: 768px) {
