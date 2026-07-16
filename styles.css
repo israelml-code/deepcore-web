@@ -816,9 +816,10 @@ ul, ol {
 }
 
 .clients-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: nowrap;
   gap: 28px;
+  justify-content: center;
 }
 
 .client-card {
@@ -828,6 +829,9 @@ ul, ol {
   background: var(--color-bg-card);
   border: 1px solid var(--border-glass);
   transition: all var(--transition-smooth);
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 280px;
 }
 
 .client-card:hover {
@@ -879,17 +883,21 @@ ul, ol {
   line-height: 1.5;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .clients-grid {
-    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .client-card {
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
   }
 }
 
-@media (max-width: 640px) {
-  .clients-grid {
-    grid-template-columns: 1fr;
-    max-width: 340px;
-    margin: 0 auto;
+@media (max-width: 480px) {
+  .client-card {
+    flex: 0 0 100%;
+    max-width: 300px;
   }
 }
 
