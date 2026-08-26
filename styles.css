@@ -841,6 +841,14 @@ ul, ol {
   overflow: hidden;
 }
 
+@media (min-width: 769px) {
+  .clients-image-wrapper .client-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 16px);
+  }
+}
+
 .client-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(123, 47, 242, 0.15);
