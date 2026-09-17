@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deepcore-web-production.up.railway.app/sitemap.xml
